@@ -1,0 +1,73 @@
+{
+    "resourceType": "Patient",
+    "identifier": [
+        {
+            "use": "usual",
+            "type": {
+                "coding": [
+                    {
+                        "code": "MR",
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "display": "Medical record number"
+                    }
+                ],
+                "text": "Medical record number"
+            },
+            "system": "http://hospital.example.org",
+            "value": "123456"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "use": "official",
+            "family": "Doe",
+            "given": [
+                "John"
+            ]
+        }
+    ],
+    "gender": "male",
+    "birthDate": "1990-03-03",
+    "id": "example",
+    "address": [
+        {
+            "use": "home",
+            "line": [
+                "123 Main St"
+            ],
+            "city": "Anytown",
+            "state": "CA",
+            "postalCode": "12345",
+            "country": "USA"
+        }
+    ],
+    "contact": [
+        {
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "code": "N",
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                            "display": "Emergency Contact"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "family": "Doe",
+                "given": [
+                    "Jane"
+                ]
+            },
+            "telecom": [
+                {
+                    "system": "phone",
+                    "value": "555-555-5555",
+                    "use": "mobile"
+                }
+            ]
+        }
+    ]
+}

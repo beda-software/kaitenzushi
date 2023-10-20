@@ -1,0 +1,27 @@
+node_modules
+*.log
+coverage
+.DS_Store
+.idea
+htmlcov
+build
+
+.cpcache
+.volumes
+app.log
+.idea/
+pom.xml
+ui/*.iml
+*.iml
+.env
+.DS_Store
+
+.history
+
+# Locale files
+shared/src/locale/**/*.ts
+shared/src/locale/**/*.js
+
+.lsp/
+
+.vscode
