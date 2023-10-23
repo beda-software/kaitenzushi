@@ -6,8 +6,13 @@ describe('FSH to FHIR Translation', () => {
     const fshDir = path.join(__dirname, '../fsh');
     const fshFiles = fs.readdirSync(fshDir);
 
-    test.each(fshFiles)('translates %s to FHIR correctly', async (file) => {
-        const fshContent = fs.readFileSync(path.join(fshDir, file), 'utf-8');
+    test.each(fshFiles.filter((file) => !['RuleSet.fsh', 'Aliases.fsh'].includes(file)))('translates %s to FHIR correctly', async (file) => {
+        let fshContent = fs.readFileSync(path.join(fshDir, file), 'utf-8');
+        const ruleSetContent = fs.readFileSync(path.join(fshDir, 'RuleSet.fsh'), 'utf-8');
+        fshContent = `${fshContent}\n\n${ruleSetContent}`;
+        const aliasesContent = fs.readFileSync(path.join(fshDir, 'Aliases.fsh'), 'utf-8');
+        fshContent = `${fshContent}\n\n${aliasesContent}`;
+
         const { fhir } = await sushiClient.fshToFhir(fshContent)
 
         expect(
