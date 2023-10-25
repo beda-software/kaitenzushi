@@ -26,25 +26,34 @@ Usage: #example
 * insert CreateFixtureResource("Encounter", "launched-encounter", "create-test-encounter")
 
 * insert CreateTest("complete-encounter-populate", "Check populated fields")
-* insert PopulateQuestionnaire("complete-encounter-questionnaire-fixture", "launch-context-params", "populate-response")
-* insert AssertQRFieldEqualTo("populate-response", "encounter1", [["QuestionnaireResponse.repeat(item\).where(linkId='current-encounter-id'\).answer.value.string"]])
-* insert AssertQRFieldEqualTo("populate-response", "consultation", [["QuestionnaireResponse.repeat(item\).where(linkId='healthcare-service-code'\).answer.value.string"]])
-* insert AssertQRFieldEqualTo("populate-response", "The first appointment", [["QuestionnaireResponse.repeat(item\).where(linkId='healthcare-service-name'\).answer.value.string"]])
+* insert PopulateQuestionnaire("complete-encounter-questionnaire-fixture", "launch-context-params")
+* insert AssertEqualTo(
+    "QuestionnaireResponse",
+    [["QuestionnaireResponse.repeat(item\).where(linkId='current-encounter-id'\).answer.value.string"]],
+    "encounter1")
+* insert AssertEqualTo(
+    "QuestionnaireResponse",
+    [["QuestionnaireResponse.repeat(item\).where(linkId='healthcare-service-code'\).answer.value.string"]],
+    "consultation")
+* insert AssertEqualTo(
+    "QuestionnaireResponse",
+    [["QuestionnaireResponse.repeat(item\).where(linkId='healthcare-service-name'\).answer.value.string"]],
+    "The first appointment")
 
 * insert CreateTest("complete-encounter-extract", "Check extract")
-* insert ExtractQuestionnaire("complete-encounter-questionnaire-fixture", "complete-encounter-extract-parameters-fixture", "extract-response")
-* insert SearchFHIRResources("Invoice", "?subject=patient3", "searched-invoices")
-* insert AssertEqualTo("Bundle", "1", "Bundle.total")
-* insert AssertEqualTo("Bundle", "patient3", "Bundle.entry.resource.subject.id")
-* insert AssertEqualTo("Bundle", "practitioner1", "Bundle.entry.resource.participant.actor.id")
-* insert AssertEqualTo("Bundle", "1", [["Bundle.entry.resource.lineItem.count(\)"]])
-* insert AssertEqualTo("Bundle", "50", [["Bundle.entry.resource.lineItem.priceComponent.where(type='base'\).amount.value"]])
-* insert AssertEqualTo("Bundle", "10", [["Bundle.entry.resource.lineItem.priceComponent.where(type='tax'\).amount.value"]])
-* insert SearchFHIRResources("ChargeItem", "?subject=patient3", "searched-charge-items")
-* insert AssertEqualTo("Bundle", "1", "Bundle.total")
-* insert AssertEqualTo("Bundle", "patient3", "Bundle.entry.resource.subject.id")
-* insert AssertEqualTo("Bundle", "${launched-encounter-class-code}", "Bundle.entry.resource.code.coding.code")
-* insert AssertEqualTo("Bundle", "${launched-encounter-class-display}", "Bundle.entry.resource.code.coding.display")
+* insert ExtractQuestionnaire("complete-encounter-questionnaire-fixture", "complete-encounter-extract-parameters-fixture")
+* insert SearchFHIRResources("Invoice", "?subject=patient3")
+* insert AssertEqualTo("Bundle", "Bundle.total", "1")
+* insert AssertEqualTo("Bundle", "Bundle.entry.resource.subject.id", "patient3")
+* insert AssertEqualTo("Bundle", "Bundle.entry.resource.participant.actor.id", "practitioner1")
+* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.count(\)"]], "1")
+* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.priceComponent.where(type='base'\).amount.value"]], "50")
+* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.priceComponent.where(type='tax'\).amount.value"]], "10")
+* insert SearchFHIRResources("ChargeItem", "?subject=patient3")
+* insert AssertEqualTo("Bundle", "Bundle.total", "1")
+* insert AssertEqualTo("Bundle", "Bundle.entry.resource.subject.id", "patient3")
+* insert AssertEqualTo("Bundle", "Bundle.entry.resource.code.coding.code", "${launched-encounter-class-code}")
+* insert AssertEqualTo("Bundle", "Bundle.entry.resource.code.coding.display", "${launched-encounter-class-display}")
 
 * insert TeardownTargetId("Patient", "create-test-patient")
 * insert TeardownTargetId("Encounter", "create-test-encounter")

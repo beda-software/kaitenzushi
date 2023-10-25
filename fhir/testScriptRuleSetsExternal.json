@@ -182,15 +182,13 @@
                         "method": "post",
                         "targetId": "complete-encounter-questionnaire-fixture",
                         "sourceId": "launch-context-params",
-                        "responseId": "populate-response",
                         "encodeRequestUrl": false
                     }
                 },
                 {
                     "assert": {
-                        "description": "Check populated QuestionnaireResponse field",
+                        "description": "Check is equal",
                         "resource": "QuestionnaireResponse",
-                        "sourceId": "populate-response",
                         "value": "encounter1",
                         "operator": "equals",
                         "warningOnly": false,
@@ -199,9 +197,8 @@
                 },
                 {
                     "assert": {
-                        "description": "Check populated QuestionnaireResponse field",
+                        "description": "Check is equal",
                         "resource": "QuestionnaireResponse",
-                        "sourceId": "populate-response",
                         "value": "consultation",
                         "operator": "equals",
                         "warningOnly": false,
@@ -210,9 +207,8 @@
                 },
                 {
                     "assert": {
-                        "description": "Check populated QuestionnaireResponse field",
+                        "description": "Check is equal",
                         "resource": "QuestionnaireResponse",
-                        "sourceId": "populate-response",
                         "value": "The first appointment",
                         "operator": "equals",
                         "warningOnly": false,
@@ -237,7 +233,6 @@
                         "method": "post",
                         "targetId": "complete-encounter-questionnaire-fixture",
                         "sourceId": "complete-encounter-extract-parameters-fixture",
-                        "responseId": "extract-response",
                         "encodeRequestUrl": false
                     }
                 },
@@ -258,8 +253,7 @@
                         },
                         "resource": "Invoice",
                         "encodeRequestUrl": false,
-                        "params": "?subject=patient3",
-                        "responseId": "searched-invoices"
+                        "params": "?subject=patient3"
                     }
                 },
                 {
@@ -331,8 +325,7 @@
                         },
                         "resource": "ChargeItem",
                         "encodeRequestUrl": false,
-                        "params": "?subject=patient3",
-                        "responseId": "searched-charge-items"
+                        "params": "?subject=patient3"
                     }
                 },
                 {

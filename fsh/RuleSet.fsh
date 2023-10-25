@@ -67,14 +67,14 @@ RuleSet: TeardownWithTargetId(code, resource, targetId, description)
 * teardown.action[=].operation.targetId = {targetId}
 * teardown.action[=].operation.encodeRequestUrl = true
 
-RuleSet: ExtractQuestionnaire(targetId, sourceId, responseId)
-* insert TSTestOperationGlobal("extract", "Questionnaire", "Questionnaire data extract", "json", "post", {targetId}, {sourceId}, {responseId})
+RuleSet: ExtractQuestionnaire(targetId, sourceId)
+* insert TSTestOperationGlobal("extract", "Questionnaire", "Questionnaire data extract", "json", "post", {targetId}, {sourceId})
 * insert TSTestAssertSuccessResponse
 
-RuleSet: PopulateQuestionnaire(targetId, sourceId, responseId)
-* insert TSTestOperationGlobal("populate", "Questionnaire", "Questionnaire population", "json", "post", {targetId}, {sourceId}, {responseId})
+RuleSet: PopulateQuestionnaire(targetId, sourceId)
+* insert TSTestOperationGlobal("populate", "Questionnaire", "Questionnaire population", "json", "post", {targetId}, {sourceId})
 
-RuleSet: TSTestOperationGlobal(type, resource, description, accept, method, targetId, sourceId, responseId)
+RuleSet: TSTestOperationGlobal(type, resource, description, accept, method, targetId, sourceId)
 * test[=].action[+].operation
   * type = $testscript-operation-codes#{type}
   * resource = #{resource}
@@ -83,20 +83,18 @@ RuleSet: TSTestOperationGlobal(type, resource, description, accept, method, targ
   * method = #{method}
   * targetId = {targetId}
   * sourceId = {sourceId}
-  * responseId = {responseId}
   * encodeRequestUrl = false
 
-RuleSet: SearchFHIRResources(resourceType, params, responseId)
-* insert TSTestOperationSearch("Search FHIR resources", "search", {resourceType}, {params}, {responseId})
+RuleSet: SearchFHIRResources(resourceType, params)
+* insert TSTestOperationSearch("Search FHIR resources", "search", {resourceType}, {params})
 
-RuleSet: TSTestOperationSearch(description, type, resource, params, responseId)
+RuleSet: TSTestOperationSearch(description, type, resource, params)
 * test[=].action[+].operation
   * description = {description}
   * type = $QuestionnaireResponse-extract#{type}
   * resource = #{resource}
   * encodeRequestUrl = true
   * params = {params}
-  * responseId = {responseId}
   * encodeRequestUrl = false
 
 RuleSet: AssertQRFieldEqualTo(QRId, value, expression)
@@ -112,7 +110,7 @@ RuleSet: TSTestAssertWithProp(description, resource, sourceId, value, operator, 
   * warningOnly = false
   * expression = {expression}
 
-RuleSet: AssertEqualTo(resource, value, expression)
+RuleSet: AssertEqualTo(resource, expression, value)
 * insert TSTestAssertWithPropEmptySourceIdExpression("Check is equal", {resource}, {value}, "equals", {expression})
 
 RuleSet: TSTestAssertWithPropEmptySourceIdExpression(description, resource, value, operator, expression)
