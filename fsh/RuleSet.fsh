@@ -27,6 +27,10 @@ RuleSet: SetupActionOperationSuccess(type, resource, sourceId, responseId, descr
 * insert SetupActionOperation({type}, {resource}, {sourceId}, {responseId}, {description})
 * insert AssertCreated
 
+RuleSet: CreateFixtureResource(resource, sourceId, responseId)
+* insert SetupActionOperation("create", {resource}, {sourceId}, {responseId}, "Create fixture resource")
+* insert AssertCreated
+
 RuleSet: CreateTest(name, description)
 * test[+].name = {name}
 * test[=].description = {description}
@@ -34,8 +38,8 @@ RuleSet: CreateTest(name, description)
 RuleSet: AddFixtureFile(id, fileName)
 * insert AddFixture({id}, file://tests/resources/{fileName})
 
-RuleSet: AddFixtureResource(id, resourceType, resourceId)
-* insert AddFixture({id}, {resourceType}/{resourceId})
+RuleSet: AddFixtureResource(id, reference)
+* insert AddFixture({id}, {reference})
 
 RuleSet: AddFixture(id, path)
 * fixture[+].id = {id}
@@ -50,12 +54,25 @@ RuleSet: TeardownWithParams(code, resource, params, description)
 * teardown.action[=].operation.params = {params}
 * teardown.action[=].operation.encodeRequestUrl = true
 
+RuleSet: TeardownParams(resource, params)
+* insert TeardownWithParams("delete", {resource}, {params}, "Delete test resources")
+
+RuleSet: TeardownTargetId(resource, targetId)
+* insert TeardownWithTargetId("delete", {resource}, {targetId}, "Delete test resources")
+
 RuleSet: TeardownWithTargetId(code, resource, targetId, description)
 * teardown.action[+].operation.type = $testscript-operation-codes#{code}
 * teardown.action[=].operation.resource = #{resource}
 * teardown.action[=].operation.description = {description}
 * teardown.action[=].operation.targetId = {targetId}
 * teardown.action[=].operation.encodeRequestUrl = true
+
+RuleSet: ExtractQuestionnaire(targetId, sourceId, responseId)
+* insert TSTestOperationGlobal("extract", "Questionnaire", "Questionnaire data extract", "json", "post", {targetId}, {sourceId}, {responseId})
+* insert TSTestAssertSuccessResponse
+
+RuleSet: PopulateQuestionnaire(targetId, sourceId, responseId)
+* insert TSTestOperationGlobal("populate", "Questionnaire", "Questionnaire population", "json", "post", {targetId}, {sourceId}, {responseId})
 
 RuleSet: TSTestOperationGlobal(type, resource, description, accept, method, targetId, sourceId, responseId)
 * test[=].action[+].operation
@@ -69,6 +86,9 @@ RuleSet: TSTestOperationGlobal(type, resource, description, accept, method, targ
   * responseId = {responseId}
   * encodeRequestUrl = false
 
+RuleSet: SearchFHIRResources(resourceType, params, responseId)
+* insert TSTestOperationSearch("Search FHIR resources", "search", {resourceType}, {params}, {responseId})
+
 RuleSet: TSTestOperationSearch(description, type, resource, params, responseId)
 * test[=].action[+].operation
   * description = {description}
@@ -79,7 +99,10 @@ RuleSet: TSTestOperationSearch(description, type, resource, params, responseId)
   * responseId = {responseId}
   * encodeRequestUrl = false
 
-RuleSet: TSTestAssertWithProp(description, resource, sourceId, value, operator)
+RuleSet: AssertQRFieldEqualTo(QRId, value, expression)
+* insert TSTestAssertWithProp("Check populated QuestionnaireResponse field", "QuestionnaireResponse", {QRId}, {value}, "equals", {expression})
+
+RuleSet: TSTestAssertWithProp(description, resource, sourceId, value, operator, expression)
 * test[=].action[+].assert
   * description = {description}
   * resource = #{resource}
@@ -87,6 +110,22 @@ RuleSet: TSTestAssertWithProp(description, resource, sourceId, value, operator)
   * value = {value}
   * operator = #{operator}
   * warningOnly = false
+  * expression = {expression}
+
+RuleSet: AssertEqualTo(resource, value, expression)
+* insert TSTestAssertWithPropEmptySourceIdExpression("Check is equal", {resource}, {value}, "equals", {expression})
+
+RuleSet: TSTestAssertWithPropEmptySourceIdExpression(description, resource, value, operator, expression)
+* test[=].action[+].assert
+  * description = {description}
+  * resource = #{resource}
+  * value = {value}
+  * operator = #{operator}
+  * warningOnly = false
+  * expression = {expression}
+
+RuleSet: AssertEqual(resource, value)
+* insert TSTestAssertWithPropEmptySourceId("Check is equal", {resource}, {value}, "equals")
 
 RuleSet: TSTestAssertWithPropEmptySourceId(description, resource, value, operator)
 * test[=].action[+].assert

@@ -109,7 +109,7 @@
                     "resource": "Patient",
                     "sourceId": "patient",
                     "responseId": "create-test-patient",
-                    "description": "Create Patient",
+                    "description": "Create fixture resource",
                     "encodeRequestUrl": false
                 }
             },
@@ -130,7 +130,7 @@
                     "resource": "Appointment",
                     "sourceId": "appointment",
                     "responseId": "create-test-appointment",
-                    "description": "Create Appointment",
+                    "description": "Create fixture resource",
                     "encodeRequestUrl": false
                 }
             },
@@ -151,7 +151,7 @@
                     "resource": "Encounter",
                     "sourceId": "launched-encounter",
                     "responseId": "create-test-encounter",
-                    "description": "Create Encounter",
+                    "description": "Create fixture resource",
                     "encodeRequestUrl": false
                 }
             },
@@ -168,7 +168,7 @@
     "test": [
         {
             "name": "complete-encounter-populate",
-            "description": "Run SDC $populate against the vitals questionnaire and check populated fields\n",
+            "description": "Check populated fields",
             "action": [
                 {
                     "operation": {
@@ -188,7 +188,7 @@
                 },
                 {
                     "assert": {
-                        "description": "check populated encounter ID",
+                        "description": "Check populated QuestionnaireResponse field",
                         "resource": "QuestionnaireResponse",
                         "sourceId": "populate-response",
                         "value": "encounter1",
@@ -199,7 +199,7 @@
                 },
                 {
                     "assert": {
-                        "description": "check populated service code",
+                        "description": "Check populated QuestionnaireResponse field",
                         "resource": "QuestionnaireResponse",
                         "sourceId": "populate-response",
                         "value": "consultation",
@@ -210,7 +210,7 @@
                 },
                 {
                     "assert": {
-                        "description": "check populated service name",
+                        "description": "Check populated QuestionnaireResponse field",
                         "resource": "QuestionnaireResponse",
                         "sourceId": "populate-response",
                         "value": "The first appointment",
@@ -223,7 +223,7 @@
         },
         {
             "name": "complete-encounter-extract",
-            "description": "Run SDC $extract against the vitals questionnaire and check created resources\n",
+            "description": "Check extract",
             "action": [
                 {
                     "operation": {
@@ -251,7 +251,7 @@
                 },
                 {
                     "operation": {
-                        "description": "Get invoices created during the extract",
+                        "description": "Search FHIR resources",
                         "type": {
                             "code": "search",
                             "system": "http://hl7.org/fhir/uv/sdc/OperationDefinition/QuestionnaireResponse-extract"
@@ -264,7 +264,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check the total number of returned invoices",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "1",
                         "operator": "equals",
@@ -274,7 +274,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check the subject id of returned Invoice",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "patient3",
                         "operator": "equals",
@@ -284,7 +284,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check the subject id of returned Invoice",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "practitioner1",
                         "operator": "equals",
@@ -294,7 +294,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check the length of line items",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "1",
                         "operator": "equals",
@@ -304,7 +304,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check the price component base data",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "50",
                         "operator": "equals",
@@ -314,7 +314,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check the price component tax data",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "10",
                         "operator": "equals",
@@ -324,7 +324,7 @@
                 },
                 {
                     "operation": {
-                        "description": "Get charge items created during the extract",
+                        "description": "Search FHIR resources",
                         "type": {
                             "code": "search",
                             "system": "http://hl7.org/fhir/uv/sdc/OperationDefinition/QuestionnaireResponse-extract"
@@ -337,7 +337,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check number of charge items",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "1",
                         "operator": "equals",
@@ -347,7 +347,7 @@
                 },
                 {
                     "assert": {
-                        "description": "Check the subject of charge item",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "patient3",
                         "operator": "equals",
@@ -357,7 +357,7 @@
                 },
                 {
                     "assert": {
-                        "description": "ChargeItem code is equal to encounter class code",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "${launched-encounter-class-code}",
                         "operator": "equals",
@@ -367,7 +367,7 @@
                 },
                 {
                     "assert": {
-                        "description": "ChargeItem code is equal to encounter class display",
+                        "description": "Check is equal",
                         "resource": "Bundle",
                         "value": "${launched-encounter-class-display}",
                         "operator": "equals",
@@ -387,7 +387,7 @@
                         "system": "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
                     },
                     "resource": "Patient",
-                    "description": "Delete test patient resource",
+                    "description": "Delete test resources",
                     "targetId": "create-test-patient",
                     "encodeRequestUrl": true
                 }
@@ -399,7 +399,7 @@
                         "system": "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
                     },
                     "resource": "Encounter",
-                    "description": "Delete test encounter resource",
+                    "description": "Delete test resources",
                     "targetId": "create-test-encounter",
                     "encodeRequestUrl": true
                 }
@@ -411,7 +411,7 @@
                         "system": "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
                     },
                     "resource": "Appointment",
-                    "description": "Delete test appointment resource",
+                    "description": "Delete test resources",
                     "targetId": "create-test-appointment",
                     "encodeRequestUrl": true
                 }
@@ -423,7 +423,7 @@
                         "system": "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
                     },
                     "resource": "Invoice",
-                    "description": "Delete test invoice resource",
+                    "description": "Delete test resources",
                     "params": "?subject=patient3",
                     "encodeRequestUrl": true
                 }
@@ -435,7 +435,7 @@
                         "system": "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
                     },
                     "resource": "ChargeItem",
-                    "description": "Delete test chargeitem resource",
+                    "description": "Delete test resources",
                     "params": "?subject=patient3",
                     "encodeRequestUrl": true
                 }
