@@ -31,8 +31,9 @@ RuleSet: CreateFixtureResource(responseId, resource, sourceId)
 * insert SetupActionOperation("create", {resource}, {sourceId}, {responseId}, "Create fixture resource")
 * insert AssertCreated
 
-RuleSet: CreateTest(name)
+RuleSet: CreateTest(name, description)
 * test[+].name = {name}
+* test[=].description = {description}
 
 RuleSet: AddFixtureFile(id, fileName)
 * insert AddFixture({id}, file://tests/resources/{fileName})

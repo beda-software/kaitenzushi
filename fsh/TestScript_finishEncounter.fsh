@@ -26,7 +26,7 @@ Usage: #example
 * insert CreateFixtureResource("create-test-appointment", "Appointment", "appointment")
 * insert CreateFixtureResource("create-test-encounter", "Encounter", "launched-encounter")
 
-* insert CreateTest("Check populated fields")
+* insert CreateTest("Check populated fields", "description")
 * insert PopulateQuestionnaire("complete-encounter-questionnaire-fixture", "launch-context-params")
 * insert AssertEqualTo(
     "QuestionnaireResponse",
@@ -41,17 +41,17 @@ Usage: #example
     [["QuestionnaireResponse.repeat(item\).where(linkId='healthcare-service-name'\).answer.value.string"]],
     "The first appointment")
 
-* insert CreateTest("Check extract")
+* insert CreateTest("Check extract", "description")
 * insert ExtractQuestionnaire("complete-encounter-questionnaire-fixture", "complete-encounter-extract-parameters-fixture")
 * insert SearchFHIRResources("Invoice", "?subject=patient3")
-* insert AssertEqualTo("Bundle", "Bundle.total", "1")
+* insert AssertEqualTo("Bundle", [["Bundle.total.toString(\)"]], "1")
 * insert AssertEqualTo("Bundle", "Bundle.entry.resource.subject.id", "patient3")
 * insert AssertEqualTo("Bundle", "Bundle.entry.resource.participant.actor.id", "practitioner1")
-* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.count(\)"]], "1")
-* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.priceComponent.where(type='base'\).amount.value"]], "50")
-* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.priceComponent.where(type='tax'\).amount.value"]], "10")
+* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.count(\).toString(\)"]], "1")
+* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.priceComponent.where(type='base'\).amount.value.toString(\)"]], "50")
+* insert AssertEqualTo("Bundle", [["Bundle.entry.resource.lineItem.priceComponent.where(type='tax'\).amount.value.toString(\)"]], "10")
 * insert SearchFHIRResources("ChargeItem", "?subject=patient3")
-* insert AssertEqualTo("Bundle", "Bundle.total", "1")
+* insert AssertEqualTo("Bundle", [["Bundle.total.toString(\)"]], "1")
 * insert AssertEqualTo("Bundle", "Bundle.entry.resource.subject.id", "patient3")
 * insert AssertEqualTo("Bundle", "Bundle.entry.resource.code.coding.code", "${launched-encounter-class-code}")
 * insert AssertEqualTo("Bundle", "Bundle.entry.resource.code.coding.display", "${launched-encounter-class-display}")

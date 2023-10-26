@@ -209,6 +209,7 @@
     "test": [
         {
             "name": "Check populated fields",
+            "description": "description",
             "action": [
                 {
                     "operation": {
@@ -259,6 +260,7 @@
         },
         {
             "name": "Check extract",
+            "description": "description",
             "action": [
                 {
                     "operation": {
@@ -302,7 +304,7 @@
                         "value": "1",
                         "operator": "equals",
                         "warningOnly": false,
-                        "expression": "Bundle.total"
+                        "expression": "Bundle.total.toString()"
                     }
                 },
                 {
@@ -332,7 +334,7 @@
                         "value": "1",
                         "operator": "equals",
                         "warningOnly": false,
-                        "expression": "Bundle.entry.resource.lineItem.count()"
+                        "expression": "Bundle.entry.resource.lineItem.count().toString()"
                     }
                 },
                 {
@@ -342,7 +344,7 @@
                         "value": "50",
                         "operator": "equals",
                         "warningOnly": false,
-                        "expression": "Bundle.entry.resource.lineItem.priceComponent.where(type='base').amount.value"
+                        "expression": "Bundle.entry.resource.lineItem.priceComponent.where(type='base').amount.value.toString()"
                     }
                 },
                 {
@@ -352,7 +354,7 @@
                         "value": "10",
                         "operator": "equals",
                         "warningOnly": false,
-                        "expression": "Bundle.entry.resource.lineItem.priceComponent.where(type='tax').amount.value"
+                        "expression": "Bundle.entry.resource.lineItem.priceComponent.where(type='tax').amount.value.toString()"
                     }
                 },
                 {
@@ -374,7 +376,7 @@
                         "value": "1",
                         "operator": "equals",
                         "warningOnly": false,
-                        "expression": "Bundle.total"
+                        "expression": "Bundle.total.toString()"
                     }
                 },
                 {
