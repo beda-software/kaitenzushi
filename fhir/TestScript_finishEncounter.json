@@ -116,7 +116,7 @@
         {
             "id": "launch-context-params",
             "resource": {
-                "reference": "Parameters/complete-encounter-populate-launch-context-params"
+                "reference": "#Parameters/populate-launch-context-params"
             },
             "autocreate": false,
             "autodelete": false

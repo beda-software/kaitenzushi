@@ -43,7 +43,7 @@ RuleSet: AddFixtureResource(id, reference)
 
 RuleSet: AddFixture(id, path)
 * fixture[+].id = {id}
-* fixture[=].resource = Reference({path})
+* fixture[=].resource.reference = "{path}"
 * fixture[=].autocreate = false
 * fixture[=].autodelete = false
 

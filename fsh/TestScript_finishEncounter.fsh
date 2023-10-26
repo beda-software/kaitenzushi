@@ -16,7 +16,7 @@ Usage: #example
 * insert AddFixtureFile("complete-encounter-questionnaire-response", complete-encounter-questionnaire-response.yaml)
 * insert AddFixtureFile("complete-encounter-extract-parameters-fixture", complete-encounter-extract-request-body.yaml)
 * insert AddFixtureResource("complete-encounter-questionnaire-fixture", Questionnaire/complete-encounter)
-* insert AddFixtureResource("launch-context-params", Parameters/complete-encounter-populate-launch-context-params)
+* insert AddFixtureResource("launch-context-params", #Parameters/populate-launch-context-params)
 
 * insert AddVariable("launched-encounter-id", "launched-encounter", "Encounter.id")
 * insert AddVariable("launched-encounter-class-code", "launched-encounter", "Encounter.class.code")
