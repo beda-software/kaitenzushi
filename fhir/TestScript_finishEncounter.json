@@ -208,8 +208,7 @@
     },
     "test": [
         {
-            "name": "complete-encounter-populate",
-            "description": "Check populated fields",
+            "name": "Check populated fields",
             "action": [
                 {
                     "operation": {
@@ -259,8 +258,7 @@
             ]
         },
         {
-            "name": "complete-encounter-extract",
-            "description": "Check extract",
+            "name": "Check extract",
             "action": [
                 {
                     "operation": {

@@ -22,11 +22,11 @@ Usage: #example
 * insert AddVariable("launched-encounter-class-code", "launched-encounter", "Encounter.class.code")
 * insert AddVariable("launched-encounter-class-display", "launched-encounter", "Encounter.class.display")
 
-* insert CreateFixtureResource("Patient", "patient", "create-test-patient")
-* insert CreateFixtureResource("Appointment", "appointment", "create-test-appointment")
-* insert CreateFixtureResource("Encounter", "launched-encounter", "create-test-encounter")
+* insert CreateFixtureResource("create-test-patient", "Patient", "patient")
+* insert CreateFixtureResource("create-test-appointment", "Appointment", "appointment")
+* insert CreateFixtureResource("create-test-encounter", "Encounter", "launched-encounter")
 
-* insert CreateTest("complete-encounter-populate", "Check populated fields")
+* insert CreateTest("Check populated fields")
 * insert PopulateQuestionnaire("complete-encounter-questionnaire-fixture", "launch-context-params")
 * insert AssertEqualTo(
     "QuestionnaireResponse",
@@ -41,7 +41,7 @@ Usage: #example
     [["QuestionnaireResponse.repeat(item\).where(linkId='healthcare-service-name'\).answer.value.string"]],
     "The first appointment")
 
-* insert CreateTest("complete-encounter-extract", "Check extract")
+* insert CreateTest("Check extract")
 * insert ExtractQuestionnaire("complete-encounter-questionnaire-fixture", "complete-encounter-extract-parameters-fixture")
 * insert SearchFHIRResources("Invoice", "?subject=patient3")
 * insert AssertEqualTo("Bundle", "Bundle.total", "1")
