@@ -20,9 +20,10 @@ As developers of healthcare applications, we manipulate FHIR resources every day
    yarn test
    ```
 ### Notes
-1. The FSH file should have a similar name to the JSON file (ex: ./fsh/test.fsh => ./fhir/test.json);
-2. You can use ./fsh/Aliases.fsh to share your aliases between any *.fsh file;
-3. You can use ./fsh.RuleSet.fsh to share your rule sets between any *.fsh file;
+1. The FSH file should have a similar name to the JSON file (ex: ./fsh/TestScript_test.fsh => ./fhir/TestScript_test.json);
+2. File names should include a prefix with target resourceType (Because in some cases to generate an FHIR resource you should create a few FHIR artifacts and the SUSHI compilator will return back a list of the resources. We should mark a target resource for test purposes);
+3. You can use ./fsh/Aliases.fsh to share your aliases between any *.fsh file;
+4. You can use ./fsh.RuleSet.fsh to share your rule sets between any *.fsh file;
 ## Dictionary
 1. **FSH**: FHIR Shorthand (FSH) is a domain-specific language for defining the contents of FHIR Implementation Guides (IG). FSH can be created and updated using any text editor. Because it is text, it enables distributed, team-based development using source code control tools such as GitHub.
 2. **RuleSet**: Rule sets provide the ability to define a group of rules as an independent entity.
