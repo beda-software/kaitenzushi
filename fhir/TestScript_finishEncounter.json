@@ -23,6 +23,47 @@
             ]
         }
     ],
+    "contained": [
+        {
+            "resourceType": "Parameters",
+            "id": "populate-launch-context-params",
+            "parameter": [
+                {
+                    "name": "CurrentEncounter",
+                    "resource": {
+                        "appointment": [
+                            {
+                                "reference": "Appointment/appointment1"
+                            }
+                        ],
+                        "participant": [
+                            {
+                                "individual": {
+                                    "display": "Basic-1 Practitioner - Endocrinology",
+                                    "reference": "PractitionerRole/practitioner1"
+                                }
+                            }
+                        ],
+                        "resourceType": "Encounter",
+                        "status": "in-progress",
+                        "id": "encounter1",
+                        "class": {
+                            "code": "consultation",
+                            "system": "http://beda.software/custom-healthcare-service-list",
+                            "display": "The first appointment"
+                        },
+                        "period": {
+                            "start": "2023-10-14T06:00:00Z"
+                        },
+                        "subject": {
+                            "display": "First Patient",
+                            "reference": "Patient/patient3"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
     "fixture": [
         {
             "id": "patient",

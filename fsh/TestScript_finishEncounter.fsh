@@ -9,6 +9,7 @@ Usage: #example
 * contact.name = "Support"
 * insert AddTelecom("email", "ilya@beda.software", "work")
 * insert AddTelecom("email", "pavel.r@beda.software", "work")
+* contained = populate-launch-context-params
 * insert AddFixtureFile("patient", patient1.yaml)
 * insert AddFixtureFile("appointment", appointment.yaml)
 * insert AddFixtureFile("launched-encounter", encounter.yaml)
@@ -60,3 +61,18 @@ Usage: #example
 * insert TeardownTargetId("Appointment", "create-test-appointment")
 * insert TeardownParams("Invoice", "?subject=patient3")
 * insert TeardownParams("ChargeItem", "?subject=patient3")
+
+Instance: populate-launch-context-params
+InstanceOf: Parameters
+Usage: #inline
+* parameter.name = "CurrentEncounter"
+* parameter.resource.appointment.reference = "Appointment/appointment1"
+* parameter.resource.participant.individual.display = "Basic-1 Practitioner - Endocrinology"
+* parameter.resource.participant.individual.reference = "PractitionerRole/practitioner1"
+* parameter.resource.resourceType = "Encounter"
+* parameter.resource.status = #in-progress
+* parameter.resource.id = "encounter1"
+* parameter.resource.class = $custom-healthcare-service-list#consultation "The first appointment"
+* parameter.resource.period.start = "2023-10-14T06:00:00Z"
+* parameter.resource.subject.display = "First Patient"
+* parameter.resource.subject.reference = "Patient/patient3"

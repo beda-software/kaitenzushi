@@ -16,7 +16,7 @@ describe('FSH to FHIR Translation', () => {
         const { fhir } = await sushiClient.fshToFhir(fshContent)
 
         expect(
-            fhir?.[0]
+            fhir.find((resource) => resource.resourceType === file.split('_')?.[0])
         ).toEqual(
             JSON.parse(
                 fs.readFileSync(path.join(__dirname, `../fhir/${file.replace('.fsh', '.json')}`), 'utf-8')
