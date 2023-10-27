@@ -23,10 +23,6 @@ RuleSet: SetupActionOperation(type, resource, sourceId, responseId, description)
 * setup.action[=].operation.description = {description}
 * setup.action[=].operation.encodeRequestUrl = false
 
-RuleSet: SetupActionOperationSuccess(type, resource, sourceId, responseId, description)
-* insert SetupActionOperation({type}, {resource}, {sourceId}, {responseId}, {description})
-* insert AssertCreated
-
 RuleSet: CreateFixtureResource(responseId, resource, sourceId)
 * insert SetupActionOperation("create", {resource}, {sourceId}, {responseId}, "Create fixture resource")
 * insert AssertCreated
@@ -97,19 +93,6 @@ RuleSet: TSTestOperationSearch(description, type, resource, params)
   * params = {params}
   * encodeRequestUrl = false
 
-RuleSet: AssertQRFieldEqualTo(QRId, value, expression)
-* insert TSTestAssertWithProp("Check populated QuestionnaireResponse field", "QuestionnaireResponse", {QRId}, {value}, "equals", {expression})
-
-RuleSet: TSTestAssertWithProp(description, resource, sourceId, value, operator, expression)
-* test[=].action[+].assert
-  * description = {description}
-  * resource = #{resource}
-  * sourceId = {sourceId}
-  * value = {value}
-  * operator = #{operator}
-  * warningOnly = false
-  * expression = {expression}
-
 RuleSet: AssertEqualTo(resource, expression, value)
 * insert TSTestAssertWithPropEmptySourceIdExpression("Check is equal", {resource}, {value}, "equals", {expression})
 
@@ -121,17 +104,6 @@ RuleSet: TSTestAssertWithPropEmptySourceIdExpression(description, resource, valu
   * operator = #{operator}
   * warningOnly = false
   * expression = {expression}
-
-RuleSet: AssertEqual(resource, value)
-* insert TSTestAssertWithPropEmptySourceId("Check is equal", {resource}, {value}, "equals")
-
-RuleSet: TSTestAssertWithPropEmptySourceId(description, resource, value, operator)
-* test[=].action[+].assert
-  * description = {description}
-  * resource = #{resource}
-  * value = {value}
-  * operator = #{operator}
-  * warningOnly = false
 
 RuleSet: TSTestAssertSuccessResponse
 * test[=].action[+].assert
