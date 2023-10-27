@@ -94,7 +94,7 @@ RuleSet: TSTestOperationSearch(description, type, resource, params)
   * encodeRequestUrl = false
 
 RuleSet: AssertEqualTo(resource, expression, value)
-* insert TSTestAssertWithPropEmptySourceIdExpression("Check is equal", {resource}, {value}, "equals", {expression})
+* insert TSTestAssertWithPropEmptySourceIdExpression("Check is equal", {resource}, {value}, "equals", [[{expression}]])
 
 RuleSet: TSTestAssertWithPropEmptySourceIdExpression(description, resource, value, operator, expression)
 * test[=].action[+].assert
@@ -103,7 +103,7 @@ RuleSet: TSTestAssertWithPropEmptySourceIdExpression(description, resource, valu
   * value = {value}
   * operator = #{operator}
   * warningOnly = false
-  * expression = {expression}
+  * expression = "{expression}"
 
 RuleSet: TSTestAssertSuccessResponse
 * test[=].action[+].assert
