@@ -10,7 +10,6 @@ Usage: #example
 * insert AddTelecom("email", "ilya@beda.software", "work")
 * insert AddTelecom("email", "pavel.r@beda.software", "work")
 
-* insert AddFixtureFile("healthcare-service-questionnaire-response", healthcare-service-create-questionnaire-response.yaml)
 * insert AddFixtureFile("healthcare-service-create-body", healthcare-service-create-extract-request-body.yaml)
 * insert AddFixtureResource("healthcare-service-create-questionnaire", Questionnaire/healthcare-service-create)
 
