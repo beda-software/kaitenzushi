@@ -1,5 +1,5 @@
-# Kaitenzushi (回転寿司)
-The simple way to check the transformation of your FSH files into the FHIR JSON.
+# Kaitenzushi (回転寿司) - The simple way to check the transformation of your FSH files into the FHIR JSON.
+![Kaitenzushi banner](banner.png)
 
 ## Motivation
 For research purposes...
@@ -39,8 +39,8 @@ As developers of healthcare applications, we manipulate FHIR resources every day
 1. **FSH**: FHIR Shorthand (FSH) is a domain-specific language for defining the contents of FHIR Implementation Guides (IG). FSH can be created and updated using any text editor. Because it is text, it enables distributed, team-based development using source code control tools such as GitHub.
 2. **RuleSet**: Rule sets provide the ability to define a group of rules as an independent entity.
 3. **SUSHI**: SUSHI (SUSHI Unshortens ShortHand Inputs) is a FSH compiler. SUSHI converts FSH language to FHIR artifacts.
-4. **Kaitenzushi**: Kaitenzushi (回転寿司), also known as conveyor belt sushi or sushi train, is a convenient and affordable type of sushi restaurant characterized by the conveyor belt that winds through the restaurant. The conveyor belt carries plates of sushi past the diners, who can take whatever they wish. The price per plate starts around 100 yen. Kaitenzushi tend to be considerably cheaper than conventional sushi-ya.
-5. **TestScript**: A structured set of tests against a FHIR server or client implementation to determine compliance against the FHIR specification.
+4. **TestScript**: A structured set of tests against a FHIR server or client implementation to determine compliance against the FHIR specification.
+5. **Kaitenzushi**: Kaitenzushi (回転寿司), also known as conveyor belt sushi or sushi train, is a convenient and affordable type of sushi restaurant characterized by the conveyor belt that winds through the restaurant. The conveyor belt carries plates of sushi past the diners, who can take whatever they wish. The price per plate starts around 100 yen. Kaitenzushi tend to be considerably cheaper than conventional sushi-ya.
 
 ## References
 1. [FSHschool](https://fshschool.org/docs/);
