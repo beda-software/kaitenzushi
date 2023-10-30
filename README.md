@@ -9,16 +9,27 @@ As developers of healthcare applications, we manipulate FHIR resources every day
 **The current main goal is to understand how FSH could help us to create comfortable for developers TestScript resources.**
 
 ## How to use
+### General
 0. ⚙️ Install dependencies
    ```bash
    yarn install
    ```
-2. 🐟 Add your FSH file to the /fsh folder;
-3. 🔥 Add your FHIR file in JSON format to the /fhir folder (the expected result of the transform from FSH to FHIR);
-4. 🧪 Run tests
+### For the test you implementation FSH -> JSON
+0. 🐟 Add your FSH file to the /fsh folder;
+1. 🔥 Add your FHIR file in JSON format to the /fhir folder (the expected result of the transform from FSH to FHIR);
+2. 🧪 Run tests
    ```bash
    yarn test
    ```
+### To convert files FSH -> YAML/JSON
+0. Base translate
+  ```bash
+  yarn convert -i path/to/source/or/single/file
+  ```
+1. Translate with all parameters
+  ```bash
+  yarn convert -i path/to/source/or/single/file -o path/to/output/folder -r TestScript -e yaml
+  ```
 ### Notes
 1. The FSH file should have a similar name to the JSON file (ex: ./fsh/TestScript_test.fsh => ./fhir/TestScript_test.json);
 2. File names should include a prefix with target resourceType (Because in some cases to generate an FHIR resource you should create a few FHIR artifacts and the SUSHI compilator will return back a list of the resources. We should mark a target resource for test purposes);
