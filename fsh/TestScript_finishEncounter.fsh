@@ -18,9 +18,9 @@ Usage: #example
 * insert AddFixtureResource("complete-encounter-questionnaire-fixture", Questionnaire/complete-encounter)
 * insert AddFixtureResource("launch-context-params", #Parameters/populate-launch-context-params)
 
-* insert AddVariable("launched-encounter-id", "launched-encounter", "Encounter.id")
-* insert AddVariable("launched-encounter-class-code", "launched-encounter", "Encounter.class.code")
-* insert AddVariable("launched-encounter-class-display", "launched-encounter", "Encounter.class.display")
+* insert AddVariable("launched-encounter-id", "launched-encounter", Encounter.id)
+* insert AddVariable("launched-encounter-class-code", "launched-encounter", Encounter.class.code)
+* insert AddVariable("launched-encounter-class-display", "launched-encounter", Encounter.class.display)
 
 * insert CreateFixtureResource("create-test-patient", "Patient", "patient")
 * insert CreateFixtureResource("create-test-appointment", "Appointment", "appointment")

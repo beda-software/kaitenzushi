@@ -2,7 +2,7 @@ Instance: healthcare-service-create-questionnaire-ts-test
 InstanceOf: TestScript
 Usage: #example
 * url = "https://beda.software/TestScript/healthcare-service-create-questionnaire-ts-test"
-* name = "complete-encounter-questionnaire-sc-test"
+* name = "healthcare-service-create-questionnaire-ts-test"
 * status = #draft
 * date = "2023-10-26"
 * publisher = "Beda Software"

@@ -7,7 +7,7 @@ RuleSet: AddTelecom(system, value, use)
 RuleSet: AddVariable(name, sourceId, expression)
 * variable[+].name = {name}
 * variable[=].sourceId = {sourceId}
-* variable[=].expression = {expression}
+* variable[=].expression = "{expression}"
 
 RuleSet: AssertCreated
 * setup.action[+].assert.description = "Confirm that the returned HTTP status is 201(created)."
