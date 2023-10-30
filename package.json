@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "sushi": "ts-node scripts/sushi.ts"
+    "fshToFHIR": "ts-node scripts/sushi.ts"
   },
   "keywords": [],
   "author": "",

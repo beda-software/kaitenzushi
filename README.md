@@ -24,11 +24,11 @@ As developers of healthcare applications, we manipulate FHIR resources every day
 ### To convert files FSH -> YAML/JSON
 0. Base translate
   ```bash
-  yarn sushi -i path/to/source/or/single/file
+  yarn fshToFHIR -i path/to/source/or/single/file
   ```
 1. Translate with all parameters
   ```bash
-  yarn sushi -i path/to/source/or/single/file -o path/to/output/folder -r TestScript -e yaml
+  yarn fshToFHIR -i path/to/source/or/single/file -o path/to/output/folder -r TestScript -e yaml
   ```
 ### Notes
 1. The FSH file should have a similar name to the JSON file (ex: ./fsh/TestScript_test.fsh => ./fhir/TestScript_test.json);
