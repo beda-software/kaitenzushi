@@ -1,4 +1,4 @@
-# Kaitenzushi (回転寿司) - The simple way to check the transformation of your FSH files into the FHIR JSON.
+# Kaitenzushi (回転寿司) is a tool that makes writing modular TestScripts easier using FHIR Shorthand.
 ![Kaitenzushi banner](banner.png)
 
 ## Motivation
