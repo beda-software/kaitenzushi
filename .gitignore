@@ -25,3 +25,5 @@ shared/src/locale/**/*.js
 .lsp/
 
 .vscode
+
+artifacts
