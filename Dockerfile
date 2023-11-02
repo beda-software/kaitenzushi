@@ -8,4 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["yarn", "fshToFHIR"]
+ENTRYPOINT ["./entrypoint.sh"]
