@@ -28,3 +28,4 @@ shared/src/locale/**/*.js
 
 artifacts
 .tmp
+dist/

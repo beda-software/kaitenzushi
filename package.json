@@ -1,11 +1,13 @@
 {
   "name": "kaitenzushi",
-  "version": "0.0.1",
+  "version": "0.0.1-a",
   "description": "A build system for FHIR Shorthand",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "fshToFHIR": "ts-node scripts/sushi.ts"
+    "fshToFHIR": "ts-node scripts/sushi.ts",
+    "build": "tsc",
+    "prepare": "yarn build"
   },
   "keywords": [
     "fhir",
@@ -21,6 +23,10 @@
     "automation",
     "developers",
     "healthcare-data"
+  ],
+  "bin": {"kaitenzushi": "dist/scripts/sushi.js"},
+  "files": [
+     "dist/**/*"
   ],
   "author": "beda.software",
   "license": "MIT",
