@@ -1,4 +1,4 @@
-# Kaitenzushi (回転寿司) is a tool that makes writing modular TestScripts easier using FHIR Shorthand.
+# Kaitenzushi (回転寿司) is a build system for FHIR Shorthand.
 ![Kaitenzushi banner](banner.png)
 
 ## Motivation
