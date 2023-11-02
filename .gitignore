@@ -27,3 +27,4 @@ shared/src/locale/**/*.js
 .vscode
 
 artifacts
+.tmp

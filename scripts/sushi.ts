@@ -30,7 +30,6 @@ async function getArgs() {
         resourceType: { type: 'string', demandOption: false, alias: 'r', description: 'Target resource to translate (by default is TestScript' },
         extension: { type: 'string', demandOption: false, alias: 'e', description: 'Extension of the result. Can be yaml or json. (by default is json)' },
         dependency: { type: 'string', demandOption: false, alias: 'd', description: 'Link to GitHub repo with FSH files. Ex: RuleSets, Aliases' },
-        token: { type: 'string', demandOption: false, alias: 't', description: 'GitHub Token to fetch FSH deps' },
     }).argv;
 
     return argv
@@ -42,13 +41,12 @@ getArgs().then(async argv => {
     const resourceType = argv.resourceType ?? 'TestScript';
     const extension = argv.extension ?? 'yaml';
     const dependency = argv.dependency ?? 'https://github.com/beda-software/beda-emr-core';
-    const token = argv.token ?? '';
 
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    const externalFSH = await getDependencyFSH(dependency, token)
+    const externalFSH = await getDependencyFSH(dependency, '.tmp')
 
     const stats = fs.statSync(inputPath);
 
