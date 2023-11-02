@@ -24,9 +24,11 @@
     "developers",
     "healthcare-data"
   ],
-  "bin": {"kaitenzushi": "dist/scripts/sushi.js"},
+  "bin": {
+    "kaitenzushi": "dist/scripts/sushi.js"
+  },
   "files": [
-     "dist/**/*"
+    "dist/**/*"
   ],
   "author": "beda.software",
   "license": "MIT",
