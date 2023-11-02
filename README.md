@@ -1,5 +1,5 @@
 # Kaitenzushi (回転寿司) is a build system for FHIR Shorthand.
-![Kaitenzushi banner](kaitenzushiBanner.jpg)
+![Kaitenzushi banner](https://raw.githubusercontent.com/beda-software/kaitenzushi/main/kaitenzushiBanner.jpg)
 
 ## Motivation
 For research purposes...
