@@ -1,15 +1,29 @@
 {
-  "name": "sushi-sandbox",
-  "version": "1.0.0",
-  "description": "",
+  "name": "kaitenzushi",
+  "version": "0.0.1",
+  "description": "A build system for FHIR Shorthand",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "fshToFHIR": "ts-node scripts/sushi.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "fhir",
+    "fsh",
+    "healthcare",
+    "medical-informatics",
+    "resource-generation",
+    "nodejs",
+    "javascript",
+    "sushi",
+    "hl7",
+    "testing",
+    "automation",
+    "developers",
+    "healthcare-data"
+  ],
+  "author": "beda.software",
+  "license": "MIT",
   "dependencies": {
     "@types/jest": "^29.5.6",
     "@types/js-yaml": "^4.0.8",
