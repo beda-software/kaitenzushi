@@ -8,4 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["yarn", "fshToFHIR", "-i", "resources/tests/TestScript", "-o", "resources/tests/TestScript"]
+CMD ["yarn", "fshToFHIR", "-i", "echo $INPUTDIR", "-o", "echo $OUTPUTDIR"]
