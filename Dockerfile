@@ -8,4 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["yarn", "fshToFHIR", "-i", "resources/tests/TestScript", "-o", "resources/tests/TestScript"]
+ENTRYPOINT ["./entrypoint.sh"]
