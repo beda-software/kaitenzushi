@@ -1,11 +1,26 @@
-name: Release to dockerhub
+name: Release to NPM and Docker hub
 on:
-  push:
-    branches:
-      - main
-      - develop
-jobs:
   release:
+    types: [created]
+jobs:
+  npm:
+    name: Build and release to NPM
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn
+      - run: yarn run build
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
+  dockerhub:
     name: Build and release image to Docker Hub
     runs-on: ubuntu-latest
     steps:
