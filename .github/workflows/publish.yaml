@@ -42,5 +42,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: bedasoftware/kaitenzushi:${{ steps.extract_branch.outputs.branch }}
+          tags: |
+            bedasoftware/kaitenzushi:${{ steps.extract_branch.outputs.branch }}
+            bedasoftware/kaitenzushi:latest
           platforms: linux/amd64,linux/arm64
