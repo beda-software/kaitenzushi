@@ -41,6 +41,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
             bedasoftware/kaitenzushi:${{ steps.package_version.outputs.VERSION }}
             bedasoftware/kaitenzushi:latest
