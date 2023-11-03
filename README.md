@@ -7,8 +7,11 @@ For research purposes...
 As developers of healthcare applications, we manipulate FHIR resources every day, which often have a large number of rows. FSH allows us to reduce the amount of code and thanks to tools such as RuleSet, we can create reusable pieces in FHIR-first applications. We want to find a way to write simple, maintainable FHIR resources for our projects.
 
 **The current main goal is to understand how FSH could help us to create comfortable for developers TestScript resources.**
-
-## How to use
+## How to use it as a package
+```bash
+npx kaitenzushi -i <path/to/sources> -o <path/to/output/dir> -r <FHIR resource name>
+```
+## How to use as a local package
 ### General
 0. ⚙️ Install dependencies
    ```bash
