@@ -36,11 +36,10 @@ jobs:
         shell: bash
         run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
         id: extract_branch
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          tags: bedasoftware/kaitenzushi:${{ steps.extract_branch.outputs.branch }}
-          platforms: linux/amd64,linux/arm64
+      - run: docker run --rm --privileged tonistiigi/binfmt --install all
+      - run: >-
+          docker buildx build
+          --platform linux/arm64,linux/amd64
+          --push
+          --tag bedasoftware/kaitenzushi:${{ steps.extract_branch.outputs.branch }}
+          --tag bedasoftware/kaitenzushi:latest
