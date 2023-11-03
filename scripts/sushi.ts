@@ -30,7 +30,7 @@ async function getArgs() {
         inputPath: { type: 'string', demandOption: true, alias: 'i', description: 'Path to folder or single file' },
         outputPath: { type: 'string', demandOption: false, alias: 'o', description: 'Place to keep results (by default is artifacts)' },
         resourceType: { type: 'string', demandOption: false, alias: 'r', description: 'Target resource to translate (by default is TestScript' },
-        extension: { type: 'string', demandOption: false, alias: 'e', description: 'Extension of the result. Can be yaml or json. (by default is json)' },
+        target: { type: 'string', demandOption: false, alias: 't', description: 'Extension of the result. Can be yaml or json. (by default is YAML)' },
         dependency: { type: 'string', demandOption: false, alias: 'd', description: 'Link to GitHub repo with FSH files. Ex: RuleSets, Aliases' },
     }).argv;
 
@@ -41,14 +41,14 @@ getArgs().then(async argv => {
     const inputPath = argv.inputPath;
     const outputDir = argv.outputPath ?? 'artifacts';
     const resourceType = argv.resourceType ?? 'TestScript';
-    const extension = argv.extension ?? 'yaml';
-    const dependency = argv.dependency ?? 'https://github.com/beda-software/beda-emr-core';
+    const target = argv.target ?? 'yaml';
+    const dependency = argv.dependency ?? undefined;
 
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    const externalFSH = await getDependencyFSH(dependency, '.tmp')
+    const externalFSH = dependency ? await getDependencyFSH(dependency, '.tmp') : []
 
     const stats = fs.statSync(inputPath);
 
@@ -59,13 +59,13 @@ getArgs().then(async argv => {
                 continue;
             }
             const filePath = path.join(inputPath, file);
-            convertFSHtoJSON(filePath, outputDir, resourceType, extension, externalFSH).catch(error => {
+            convertFSHtoJSON(filePath, outputDir, resourceType, target, externalFSH).catch(error => {
                 console.error(`Error processing ${file}:`, error);
             });
         }
     } else if (stats.isFile()) {
         if (path.extname(inputPath) === '.fsh') {
-            convertFSHtoJSON(inputPath, outputDir, resourceType, extension, externalFSH).catch(error => {
+            convertFSHtoJSON(inputPath, outputDir, resourceType, target, externalFSH).catch(error => {
                 console.error('Error:', error);
                 process.exit(1);
             });

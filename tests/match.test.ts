@@ -9,7 +9,7 @@ describe('FSH to FHIR Translation', () => {
 
     test.each(fshFiles)('translates %s to FHIR correctly', async (file) => {
         const fshContent = fs.readFileSync(path.join(fshDir, file), 'utf-8');
-        const externalFSH = await getDependencyFSH('https://github.com/beda-software/beda-emr-core')
+        const externalFSH = await getDependencyFSH('https://github.com/beda-software/beda-emr-core', '.tmp')
 
         const { fhir } = await sushiClient.fshToFhir(mergeFSHContent(fshContent, externalFSH))
 
