@@ -43,3 +43,4 @@ jobs:
           --push
           --tag bedasoftware/kaitenzushi:${{ steps.extract_branch.outputs.branch }}
           --tag bedasoftware/kaitenzushi:latest
+          .
