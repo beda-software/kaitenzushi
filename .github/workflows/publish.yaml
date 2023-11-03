@@ -32,15 +32,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
-        id: extract_branch
-      - run: docker run --rm --privileged tonistiigi/binfmt --install all
-      - run: >-
-          docker buildx build
-          --platform linux/arm64,linux/amd64
-          --push
-          --tag bedasoftware/kaitenzushi:${{ steps.extract_branch.outputs.branch }}
-          --tag bedasoftware/kaitenzushi:latest
-          .
+      - name: Extract version from package.json
+        id: package_version
+        run: echo "::set-output name=VERSION::$(jq -r .version package.json)"
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            bedasoftware/kaitenzushi:${{ steps.package_version.outputs.VERSION }}
+            bedasoftware/kaitenzushi:latest
