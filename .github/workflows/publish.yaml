@@ -23,6 +23,7 @@ jobs:
   dockerhub:
     name: Build and release image to Docker Hub
     runs-on: ubuntu-latest
+    needs: npm
     steps:
       - uses: actions/checkout@v3
       - name: Set up Docker Buildx
