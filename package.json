@@ -1,6 +1,6 @@
 {
   "name": "kaitenzushi",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A build system for FHIR Shorthand",
   "main": "index.js",
   "scripts": {
