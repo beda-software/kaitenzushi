@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec yarn fshToFHIR "$@"
+exec kaitenzushi "$@"

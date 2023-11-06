@@ -2,8 +2,8 @@ FROM node:21
 
 WORKDIR /app
 
-RUN yarn global add kaitenzushi
+COPY entrypoint.sh .
 
-COPY . .
+RUN npm install --global kaitenzushi
 
 ENTRYPOINT ["./entrypoint.sh"]
