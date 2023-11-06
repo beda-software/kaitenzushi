@@ -11,6 +11,15 @@ As developers of healthcare applications, we manipulate FHIR resources every day
 ```bash
 npx kaitenzushi -i <path/to/sources> -o <path/to/output/dir> -r <FHIR resource name>
 ```
+### Available Parameters
+| Parameter      | Alias | Description                                   | Default value | Required | Usage example                                |
+|----------------|-------|-----------------------------------------------|---------------|----------|----------------------------------------------|
+| --inputPath    | -i    | Path to folder or single file.                | None          | True     | npx kaitenzushi -i fsh                       |
+| --outputPath   | -o    | Place to keep results.                        | /artifacts    | False    | npx kaitenzushi -i fsh -o results            |
+| --resourceType | -r    | Target resource to translate.                 | TestScript    | False    | npx kaitenzushi -i fsh -r Patient            |
+| --target       | -t    | Extension of the result. Can be yaml or json. | YAML          | False    | npx kaitenzushi -i fsh -t JSON               |
+| --dependency   | -d    | Link to GitHub repo with FSH files.           | None          | False    | npx kaitenzushi -i fsh -t <reps/github/repo> |
+
 ## How to use as a local package
 ### General
 0. ⚙️ Install dependencies
@@ -36,8 +45,6 @@ npx kaitenzushi -i <path/to/sources> -o <path/to/output/dir> -r <FHIR resource n
 ### Notes
 1. The FSH file should have a similar name to the JSON file (ex: ./fsh/TestScript_test.fsh => ./fhir/TestScript_test.json);
 2. File names should include a prefix with target resourceType (Because in some cases to generate an FHIR resource you should create a few FHIR artifacts and the SUSHI compilator will return back a list of the resources. We should mark a target resource for test purposes);
-3. You can use ./fsh/Aliases.fsh to share your aliases between any *.fsh file;
-4. You can use ./fsh.RuleSet.fsh to share your rule sets between any *.fsh file;
 ## Dictionary
 1. **FSH**: FHIR Shorthand (FSH) is a domain-specific language for defining the contents of FHIR Implementation Guides (IG). FSH can be created and updated using any text editor. Because it is text, it enables distributed, team-based development using source code control tools such as GitHub.
 2. **RuleSet**: Rule sets provide the ability to define a group of rules as an independent entity.
