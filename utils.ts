@@ -4,8 +4,10 @@ import simpleGit from 'simple-git';
 
 const git = simpleGit();
 
-export async function getDependencyFSH(dependencyUrl: string, targetFolder: string) {
-    await cloneDepsRepo(dependencyUrl, targetFolder)
+export async function getDependencyFSH(dependencyUrl: string | string[], targetFolder: string) {
+    for (const dep of typeof dependencyUrl === 'string' ? [dependencyUrl] : dependencyUrl) {
+        await cloneDepsRepo(dep, targetFolder)
+    }
     const fileList = scanDepsFile(targetFolder)
     console.log(`FSH deps found: ${fileList.join(', ')}`)
     const result = fileList.map((filePath) => getFileContent(filePath))
@@ -13,14 +15,16 @@ export async function getDependencyFSH(dependencyUrl: string, targetFolder: stri
     return result
 }
 
-export function mergeFSHContent(toString: string, fromStringArr: string[]){
+export function mergeFSHContent(toString: string, fromStringArr: string[]) {
     return [toString, ...fromStringArr].join('\n\n');
 }
 
 async function cloneDepsRepo(repoUrl: string, targetFolder: string) {
     try {
-        await git.clone(repoUrl, `./${targetFolder}/${repoUrl}`);
-        console.log('Repository cloned successfully.');
+        const dirPath = `./${targetFolder}/${repoUrl}`
+        fs.rmSync(dirPath, { force: true, recursive: true });
+        await git.clone(repoUrl, dirPath);
+        console.log(`Repository ${repoUrl} cloned successfully.`);
     } catch (err) {
         console.error('An error occurred:', err);
     }
